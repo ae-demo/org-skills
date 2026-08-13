@@ -1,0 +1,86 @@
+{
+  "aep": {
+    "origin": "platform",
+    "baseHash": "fccf6dd9a5bdaf826da81f8b860ebb55707b6c6b6bd0f0aee9c9e6a7fc33f82b"
+  },
+  "aep-validation": {
+    "origin": "platform",
+    "baseHash": "e442a7a05c59b0ef1f07e556545c4c6eb45ca58bad94ccf714ce0f078f0a7465"
+  },
+  "amend": {
+    "origin": "platform",
+    "baseHash": "7f3e0085204ba7ab06b98cc9c9539daa13a15b0a532dc14e4c9ed5896ca30971"
+  },
+  "api-management": {
+    "origin": "platform",
+    "baseHash": "df929ccc4c79d0c74e87f52a5a1612665baf64c3d6cd6eeebf78125fa8b4ccc7"
+  },
+  "architecture": {
+    "origin": "platform",
+    "baseHash": "e729cb8380ad2540b4503f119fb764301b3cf5f2d04585cfd34b5b303f7f2db4"
+  },
+  "ballerina": {
+    "origin": "platform",
+    "baseHash": "9976877aeac2f7494154c0bb3803ac04b6281327c48c414143ab806f48f7c92b"
+  },
+  "cell-design": {
+    "origin": "platform",
+    "baseHash": "eb0b0c5242d981c991c0b51c8d55e035228dc9ed8efc15bfcd1e034410e8e08b"
+  },
+  "design": {
+    "origin": "platform",
+    "baseHash": "c77357d43a52305aa2279ba57fd6dc30eff90cce00d93083c910b1d50bbcb76b"
+  },
+  "go": {
+    "origin": "platform",
+    "baseHash": "dac167d2297584891304eb7f4b17b68769f893d3e282ab39e16863119c726f96"
+  },
+  "grilling": {
+    "origin": "platform",
+    "baseHash": "c537bf78fc296728b8264bd9a731a0830cf0543054a17e7939cc0c4769bf0664"
+  },
+  "openapi-conventions": {
+    "origin": "platform",
+    "baseHash": "7ea78491409567b95b098a5cd03b9033dda9353d1ba83444f5325a4599a1b214"
+  },
+  "organization": {
+    "origin": "platform",
+    "baseHash": "fda608dcbf24e6170dbe965d22ff68c2da34309943291449965af434ffbed380"
+  },
+  "playwright-cli": {
+    "origin": "platform",
+    "baseHash": "9ba6ff2dbedbfe884d00ec3ff8b1ad19b7fc74596e3ee513f58410dcd22e00e3"
+  },
+  "prd-contract": {
+    "origin": "platform",
+    "baseHash": "196f99a343036882e2b637985821d0e55d099d20d7016b20ed25eb4fb1b6e330"
+  },
+  "react-webapp": {
+    "origin": "platform",
+    "baseHash": "e90f6f4d7d0bc3be7c60988c5fdfa1cc9f4420b9b2fcd6fac75dc95597c8a45a"
+  },
+  "security-design": {
+    "origin": "platform",
+    "baseHash": "f0b174d13f902591c9f63148c741e0c049a6c4bcce2f1f155d21cf76b8444031"
+  },
+  "start": {
+    "origin": "platform",
+    "baseHash": "fbb4d3aabe06b69d6d8bec7e1a198ba4f6f2f9685fe0959b8477c96c612f6c88"
+  },
+  "task-planning": {
+    "origin": "platform",
+    "baseHash": "a32a2ad2ab79625f6eefcf5f5f675fe31d4d8862e7d90c8c922baa750d3f0436"
+  },
+  "thunder-authentication": {
+    "origin": "platform",
+    "baseHash": "9ffe71400122c83d47371a6eb4657ec9f8dcb5ec1723aaebf8642f52e7757e8d"
+  },
+  "validation-criteria": {
+    "origin": "platform",
+    "baseHash": "aab7b303ec0bb24c610707034fd770d4cec2125a2cf1328eb7c649923a776e66"
+  },
+  "wireframes": {
+    "origin": "platform",
+    "baseHash": "397c88ca2bb909b7f137b86198a304b451d354bb13c47ed06ab40c093786c175"
+  }
+}
