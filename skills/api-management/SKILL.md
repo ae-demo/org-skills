@@ -25,8 +25,7 @@ gateway and will disagree with it.
 or any token endpoint on any backend. The IDP owns token issuance — see
 `thunder-authentication`.
 
-**Identity arrives in headers**, set by the gateway from the validated token, so
-a client cannot spoof them:
+**Identity arrives in headers**, set by the gateway from the validated token:
 
 | Header | Claim | Presence |
 |---|---|---|
@@ -41,7 +40,25 @@ Two rules are this skill's, because they are the gateway's contract:
 
 - **`X-User-Id` missing on a protected request → 401.** The gateway always sets
   it when it lets a request through, so its absence means the request did not
-  come through the gateway.
+  come through the gateway — a deployment fault, not an anonymous caller. Declare
+  the header OPTIONAL in your framework and resolve it in one helper, so your
+  service picks that status: a framework-level "required header" rejection
+  answers 400 before your resolver runs, which makes this rule unreachable.
+
+- **Only the gateway may assert identity.** A proxy in front of your service that
+  forwards untrusted traffic (a SPA's nginx) must clear inbound `X-User-*`, and
+  must itself proxy THROUGH the gateway — `react-webapp` ships an asset that does
+  both. A caller reaching your service on a lane with no gateway on it can set
+  those headers freely.
+
+- **A claim the token does not carry is not asserted.** The gateway writes a
+  header only when its claim is present; when it is absent the client's own value
+  for that header is forwarded. `groups` is the one that matters: a token issued
+  without it (a `client_credentials` token, or a user in no groups) leaves
+  `X-User-Groups` caller-controlled. Treat a role decision as trustworthy only
+  for a caller whose token actually carries the claim. A service that owns its
+  own people records sidesteps this: its role comes from the record it stored,
+  keyed on `X-User-Id`, which no caller can set (`thunder-authentication`).
 - **An authenticated caller who has no role → 403, never 401.** A 401 tells the
   SPA its token expired, so it restarts sign-in and loops forever. The role
   resolution itself is in `thunder-authentication`.
@@ -51,7 +68,7 @@ gateway gives you: stamp it on every row this service creates, and gate every
 per-user query on it.
 
 **CORS.** The `api-configuration` ClusterTrait attaches an Envoy CORS filter per
-`visibility: external` HTTPRoute, so a managed API must not add its own.
+`visibility: external` HTTPRoute.
 
 **Document the injected header.** In the OpenAPI you author for a protected
 service, list `X-User-Id` under `parameters` so consumers know it is
@@ -84,5 +101,5 @@ inbound `Authorization` header verbatim — never re-issue or mint a token.
 
 | Symptom | Cause | Fix |
 |---|---|---|
-| CORS error in the browser when calling this API | The service ships its own CORS middleware (doubled headers), or its `workload.yaml` lacks `visibility: external` | Remove the middleware; confirm `visibility: external`. |
+| CORS error in the browser when calling this API | This service ships its own CORS middleware (doubled headers) | Remove the middleware. |
 | Every protected request 401s in tests | Test calls carry no `X-User-Id` — in production the gateway sets it | Set `X-User-Id` directly on the request in tests; don't try to mint a JWT. |

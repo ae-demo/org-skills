@@ -1,43 +1,51 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "fccf6dd9a5bdaf826da81f8b860ebb55707b6c6b6bd0f0aee9c9e6a7fc33f82b"
+    "baseHash": "a77ff13becafb0ec801b7b84c476128ab049038ee5d0f582914eb911cd948672"
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "e442a7a05c59b0ef1f07e556545c4c6eb45ca58bad94ccf714ce0f078f0a7465"
+    "baseHash": "2d760f35709f78cb4d41b97909dc832c67078e16c0e16f919f9544094a0e6805"
   },
   "amend": {
     "origin": "platform",
-    "baseHash": "7f3e0085204ba7ab06b98cc9c9539daa13a15b0a532dc14e4c9ed5896ca30971"
+    "baseHash": "bee1da187b44011be28d47ed65d00a0654873221613f96fccef4f1a7330ce714"
   },
   "api-management": {
     "origin": "platform",
-    "baseHash": "df929ccc4c79d0c74e87f52a5a1612665baf64c3d6cd6eeebf78125fa8b4ccc7"
+    "baseHash": "706875ed885e2d3787d0c76dd2b7e767c42509ac41a03cb5391dcd587cfc0f5e"
   },
   "architecture": {
     "origin": "platform",
     "baseHash": "e729cb8380ad2540b4503f119fb764301b3cf5f2d04585cfd34b5b303f7f2db4"
   },
+  "astryx-design-system": {
+    "origin": "platform",
+    "baseHash": "0173774e56a8be8d897974a0c07ddbbbf60030a64dae114f792e1e91c41734c1"
+  },
   "ballerina": {
     "origin": "platform",
-    "baseHash": "9976877aeac2f7494154c0bb3803ac04b6281327c48c414143ab806f48f7c92b"
+    "baseHash": "acb148fce7562d86624c132415a84d1e8ea797a8c646cec4b7ba35eb640e76b3"
   },
   "cell-design": {
     "origin": "platform",
-    "baseHash": "eb0b0c5242d981c991c0b51c8d55e035228dc9ed8efc15bfcd1e034410e8e08b"
+    "baseHash": "d5fe8de345016ab1b1c15ec48c7a3c9bf3be21cc8af2eb2a0480688fed6acdfc"
+  },
+  "console": {
+    "origin": "platform",
+    "baseHash": "a54fe10e3d2808984a697499d69eab78e339e1f497da096e3ee9569625174f6f"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "c77357d43a52305aa2279ba57fd6dc30eff90cce00d93083c910b1d50bbcb76b"
+    "baseHash": "fe4f1e4dc0ca7d85d8539c14e01682daafbe04bee9e7502c33cc483039ecf8d4"
   },
   "go": {
     "origin": "platform",
-    "baseHash": "dac167d2297584891304eb7f4b17b68769f893d3e282ab39e16863119c726f96"
+    "baseHash": "3eec138278f93d505f6b944648c0ef5e0c00ca6d579aba270ec1edd011f2ba0c"
   },
   "grilling": {
     "origin": "platform",
-    "baseHash": "c537bf78fc296728b8264bd9a731a0830cf0543054a17e7939cc0c4769bf0664"
+    "baseHash": "ca5a92e5b72caefae2a1208fbbf08563a3bf44685544f2700e33fbf98a582339"
   },
   "openapi-conventions": {
     "origin": "platform",
@@ -45,7 +53,7 @@
   },
   "organization": {
     "origin": "platform",
-    "baseHash": "fda608dcbf24e6170dbe965d22ff68c2da34309943291449965af434ffbed380"
+    "baseHash": "5b8d083c0fe497ebd3548a4841016322fe62a86c98d52f7bc34f7765df1c1321"
   },
   "playwright-cli": {
     "origin": "platform",
@@ -53,19 +61,27 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "196f99a343036882e2b637985821d0e55d099d20d7016b20ed25eb4fb1b6e330"
+    "baseHash": "cdbeeb4e920903af41def76957be0ae8332fc0733f3f8a1c8e067ef2f8165d35"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "e90f6f4d7d0bc3be7c60988c5fdfa1cc9f4420b9b2fcd6fac75dc95597c8a45a"
+    "baseHash": "9651984181b5ff9d7d83125962ce638bcbfa3421ef10405b25bf9108611793d6"
+  },
+  "register-external-resource": {
+    "origin": "platform",
+    "baseHash": "6fa2ee0ac31851319354528818369b890c0b7e3a7c2cb59deb0f8f393b0702f4"
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "f0b174d13f902591c9f63148c741e0c049a6c4bcce2f1f155d21cf76b8444031"
+    "baseHash": "5ecaa6d6bd385439bf79b565dbb93c0e6549fe5e149cd76c1c581287e205b543"
+  },
+  "settle": {
+    "origin": "platform",
+    "baseHash": "e5cde5842e23a6d0791a4b007a97c45115b77496c037a4f8c8d2b5d7ba15932a"
   },
   "start": {
     "origin": "platform",
-    "baseHash": "fbb4d3aabe06b69d6d8bec7e1a198ba4f6f2f9685fe0959b8477c96c612f6c88"
+    "baseHash": "400338f1ae19fa9ce33c66044b6d5e6451f150937bac0813a0366d4ef02887c2"
   },
   "task-planning": {
     "origin": "platform",
@@ -73,14 +89,14 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "9ffe71400122c83d47371a6eb4657ec9f8dcb5ec1723aaebf8642f52e7757e8d"
+    "baseHash": "ea701474fd802aeb03007774007809dc010660f0434cceb91b1e98e1fab869b5"
   },
   "validation-criteria": {
     "origin": "platform",
-    "baseHash": "aab7b303ec0bb24c610707034fd770d4cec2125a2cf1328eb7c649923a776e66"
+    "baseHash": "43f8ceb18cd98b05105200e5d2e70be287b4a552022276cfb58857f97f7b1244"
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "397c88ca2bb909b7f137b86198a304b451d354bb13c47ed06ab40c093786c175"
+    "baseHash": "a64ec91761eec5d672441ecb2b4e9ede7a43d7d4a4d8bf7a2eb286f9a79973d0"
   }
 }
