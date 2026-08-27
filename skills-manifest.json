@@ -5,7 +5,7 @@
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "2d760f35709f78cb4d41b97909dc832c67078e16c0e16f919f9544094a0e6805"
+    "baseHash": "99a4c3febc3da7ef976d61fd0c4bf50c163d73f0fea5b24a7117308a0290dc32"
   },
   "amend": {
     "origin": "platform",
@@ -33,11 +33,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "a54fe10e3d2808984a697499d69eab78e339e1f497da096e3ee9569625174f6f"
+    "baseHash": "428550baa690637f462a00c241eb5dd17b8310f9b90f705073dfbfe2f3c9b31f"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "fe4f1e4dc0ca7d85d8539c14e01682daafbe04bee9e7502c33cc483039ecf8d4"
+    "baseHash": "c3c54840d946d6dec89a2f97730c7bc8c917ecb361310d752fddb0acecd6f9f6"
   },
   "go": {
     "origin": "platform",
@@ -73,7 +73,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "5ecaa6d6bd385439bf79b565dbb93c0e6549fe5e149cd76c1c581287e205b543"
+    "baseHash": "766b125f5901166f92771aac08c7a670ce1fcfc2ca4eb6f32d0e727a0370c4dd"
   },
   "settle": {
     "origin": "platform",
@@ -89,7 +89,7 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "ea701474fd802aeb03007774007809dc010660f0434cceb91b1e98e1fab869b5"
+    "baseHash": "3b276918098353597ee7a635590a3266d426f38f9185d0c4fe066c9bf9ee84dc"
   },
   "validation-criteria": {
     "origin": "platform",
