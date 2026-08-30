@@ -17,7 +17,7 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "8edd893c835c4e970e8ddbf7224a1352d9fe7a2de7db12f0b450600f2d33b00a"
+    "baseHash": "4930edf2eae6cb2312166954fa9e4c473f35e2ea9dcad9d13441ff3ec7109a2d"
   },
   "astryx-design-system": {
     "origin": "platform",
@@ -33,11 +33,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "428550baa690637f462a00c241eb5dd17b8310f9b90f705073dfbfe2f3c9b31f"
+    "baseHash": "6a65c3f2232dc474ea83b908de36fb91f56dd6ca28bebe4f42c9c0d0849fa59c"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "c3c54840d946d6dec89a2f97730c7bc8c917ecb361310d752fddb0acecd6f9f6"
+    "baseHash": "3ce542f65093029841c256cbb441ba506240f758c7b1ce40b0eb72f31e3c8f2b"
   },
   "go": {
     "origin": "platform",
@@ -73,7 +73,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "766b125f5901166f92771aac08c7a670ce1fcfc2ca4eb6f32d0e727a0370c4dd"
+    "baseHash": "55753c78cf07d0fcbbe9b6d608342312bffa9761a4bcdcc22d4eabea72e09bfe"
   },
   "settle": {
     "origin": "platform",
@@ -89,7 +89,7 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "3b276918098353597ee7a635590a3266d426f38f9185d0c4fe066c9bf9ee84dc"
+    "baseHash": "88dbf0e1569ceb7502d6cde13dae3d6502d80a5aeea05cc31ef2b2a32b6e4e80"
   },
   "validation-criteria": {
     "origin": "platform",
