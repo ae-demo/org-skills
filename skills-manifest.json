@@ -5,7 +5,7 @@
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "ec59afc971c3c0f9739a0047a24aa496c5f87d539a72d91c2f7d2d14ae4d5158"
+    "baseHash": "63d8b56a7f4e838343609f20ac06db779f41dc3f35de58d3ce149a50a4dde222"
   },
   "amend": {
     "origin": "platform",
@@ -17,11 +17,11 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "4930edf2eae6cb2312166954fa9e4c473f35e2ea9dcad9d13441ff3ec7109a2d"
+    "baseHash": "4706b4b869fa784a02e850b1efa7970f0b481ebb33cb709cf172da698b766087"
   },
   "astryx-design-system": {
     "origin": "platform",
-    "baseHash": "0173774e56a8be8d897974a0c07ddbbbf60030a64dae114f792e1e91c41734c1"
+    "baseHash": "a124c2cc172df012bcc84d58e9e42ca651daa342ff4c4e7d9f8e5658a20437a2"
   },
   "ballerina": {
     "origin": "platform",
@@ -29,11 +29,11 @@
   },
   "cell-design": {
     "origin": "platform",
-    "baseHash": "d5fe8de345016ab1b1c15ec48c7a3c9bf3be21cc8af2eb2a0480688fed6acdfc"
+    "baseHash": "2a85ec66167a9edffd9b62bb02b826e4a5c027cc640281b82fe9723cde11a198"
   },
   "console": {
     "origin": "platform",
-    "baseHash": "6a65c3f2232dc474ea83b908de36fb91f56dd6ca28bebe4f42c9c0d0849fa59c"
+    "baseHash": "a11882cc2a1c29758ce71ccdeb56c5911fd647bcf9043851c6005738140e8afa"
   },
   "design": {
     "origin": "platform",
