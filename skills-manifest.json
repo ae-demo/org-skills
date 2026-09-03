@@ -1,15 +1,11 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "00915c6a9ae572277df633869713a7aa14606676592b798394c4411cf8131d63"
+    "baseHash": "a77ff13becafb0ec801b7b84c476128ab049038ee5d0f582914eb911cd948672"
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "a5bf49d5f758afe466b536d1eb99e130f2bd11a6e42e9604fe0efe9452dc0399"
-  },
-  "agent-browser": {
-    "origin": "platform",
-    "baseHash": "e48bfbde220f2aafd9893e4755487f7c3a7e068fa391e8fe9027b4c6861a26ec"
+    "baseHash": "63d8b56a7f4e838343609f20ac06db779f41dc3f35de58d3ce149a50a4dde222"
   },
   "amend": {
     "origin": "platform",
@@ -21,11 +17,11 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "90f4d73360989679bd9daa056efb9c881459f3643739f97d1499a846cf6cd398"
+    "baseHash": "4706b4b869fa784a02e850b1efa7970f0b481ebb33cb709cf172da698b766087"
   },
   "astryx-design-system": {
     "origin": "platform",
-    "baseHash": "7ed4f9fc676fa8021fc1ffb513426dd3867f7684738de515369a911fa51e23ee"
+    "baseHash": "a124c2cc172df012bcc84d58e9e42ca651daa342ff4c4e7d9f8e5658a20437a2"
   },
   "ballerina": {
     "origin": "platform",
@@ -33,15 +29,15 @@
   },
   "cell-design": {
     "origin": "platform",
-    "baseHash": "0013d302b98a1d5b4d53154a17ccf1b9132d1a8bd335acbaa90c6208d513a787"
+    "baseHash": "2a85ec66167a9edffd9b62bb02b826e4a5c027cc640281b82fe9723cde11a198"
   },
   "console": {
     "origin": "platform",
-    "baseHash": "1c0ae089a104ba530ddc4b5678da3fe7bfc9aa97b87a59d2a04f8e63b3eefc9c"
+    "baseHash": "a11882cc2a1c29758ce71ccdeb56c5911fd647bcf9043851c6005738140e8afa"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "99447bffd07818638dd88af6b4f2f0dcc9b23c9e782c5ace4b266e4bad551a4b"
+    "baseHash": "3ce542f65093029841c256cbb441ba506240f758c7b1ce40b0eb72f31e3c8f2b"
   },
   "go": {
     "origin": "platform",
@@ -50,10 +46,6 @@
   "grilling": {
     "origin": "platform",
     "baseHash": "ca5a92e5b72caefae2a1208fbbf08563a3bf44685544f2700e33fbf98a582339"
-  },
-  "mock-verification": {
-    "origin": "platform",
-    "baseHash": "73c9d3d2f0f5284faec6c4f0e6b7ed776a20ff8daf5c5ac6c7a5d75a52537c18"
   },
   "openapi-conventions": {
     "origin": "platform",
@@ -69,11 +61,11 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "bec66f3aa1357ff4c2c9777f8cd3fbfb4c941bb2191a507dfcaf0cda02dd8568"
+    "baseHash": "cdbeeb4e920903af41def76957be0ae8332fc0733f3f8a1c8e067ef2f8165d35"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "cffd6d0f6004bd7286b84b8710af351fc477cffc3e842a6f42e0953ebdd69e82"
+    "baseHash": "9651984181b5ff9d7d83125962ce638bcbfa3421ef10405b25bf9108611793d6"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -89,22 +81,22 @@
   },
   "start": {
     "origin": "platform",
-    "baseHash": "a41efd713d85d48ffe5124c96ef24c136cedcd072c9634acc1263652bb810330"
+    "baseHash": "400338f1ae19fa9ce33c66044b6d5e6451f150937bac0813a0366d4ef02887c2"
   },
   "task-planning": {
     "origin": "platform",
-    "baseHash": "820e57877b21e2dd87dc2a9b692de6522d6f408466befaa6173d8ae5811412e3"
+    "baseHash": "2889e537cce8f4416e33ba77e9d20d1c8cb3a8e07d79d7adda5c32f4cf1f75db"
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "b091af69162cda0d0ca6ca6ce7c07c50412fbb4be86672c36df161d869f07d31"
+    "baseHash": "88dbf0e1569ceb7502d6cde13dae3d6502d80a5aeea05cc31ef2b2a32b6e4e80"
   },
   "validation-criteria": {
     "origin": "platform",
-    "baseHash": "3cf856cac883fff1838efde83bc358776f8a2b454d99f865143a4e8e19adccfe"
+    "baseHash": "43f8ceb18cd98b05105200e5d2e70be287b4a552022276cfb58857f97f7b1244"
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "00f5a81847eeb102f157c9c3405bdd3ac4d14e0105c49bcdc0f2232935b0a2cf"
+    "baseHash": "2d0dd3b7829d64609ab45ca4f99ca1c86e6f6ece08f00b0dc4c5144bc2c8fef4"
   }
 }
