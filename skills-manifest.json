@@ -1,15 +1,19 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "6d7aeb7ed6c388910fa95f24e6c388c9c49febdef594fa43dc9d24e75e1b26ac"
+    "baseHash": "00dd26f4df47afb420be0c819e9b7f00efacbe5ff8f845cbefb768c9ed38925d"
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "a5bf49d5f758afe466b536d1eb99e130f2bd11a6e42e9604fe0efe9452dc0399"
+    "baseHash": "e5412894f54eb63864d57e724551c8869ceba02e1ef919b1f6c40ce9de1d743f"
+  },
+  "agent-browser": {
+    "origin": "platform",
+    "baseHash": "b961c7f631e3be54b49ffd16f242e510db8964154b5f7a0cdbd3618530c774e5"
   },
   "amend": {
     "origin": "platform",
-    "baseHash": "bee1da187b44011be28d47ed65d00a0654873221613f96fccef4f1a7330ce714"
+    "baseHash": "28acb162ef74e910ff883a5fcbc502723fd50906521c503f96b6aef59df562b3"
   },
   "api-management": {
     "origin": "platform",
@@ -17,11 +21,11 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "90f4d73360989679bd9daa056efb9c881459f3643739f97d1499a846cf6cd398"
+    "baseHash": "27161433603efa87b79ab41b68591ead9e7904904a56d05acfa4b1286a18b564"
   },
   "astryx-design-system": {
     "origin": "platform",
-    "baseHash": "7ed4f9fc676fa8021fc1ffb513426dd3867f7684738de515369a911fa51e23ee"
+    "baseHash": "f4866284ec21a2421b0a7476f683b494bcf7bb4bffc322c83893b0a190958058"
   },
   "ballerina": {
     "origin": "platform",
@@ -33,11 +37,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "1c0ae089a104ba530ddc4b5678da3fe7bfc9aa97b87a59d2a04f8e63b3eefc9c"
+    "baseHash": "31f3027adf01af8302f1412f733546791c2265350ec8b5922f592d56d9285b1f"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "d7d10514523632d0208485cc002b63a1f05c68a470b7d486cc96c3b3989146eb"
+    "baseHash": "cfb8bb632fc968923b70d4a8360ea14a8ffd1277328632621287628c4eb6e4f5"
   },
   "go": {
     "origin": "platform",
@@ -57,7 +61,11 @@
   },
   "organization": {
     "origin": "platform",
-    "baseHash": "5b8d083c0fe497ebd3548a4841016322fe62a86c98d52f7bc34f7765df1c1321"
+    "baseHash": "ec273c06e659ec9fda99773334a844a7f2ce198c9ec137c6e4700ed1768afd07"
+  },
+  "oxygen-ui-design-system": {
+    "origin": "platform",
+    "baseHash": "38c07ef86b303a871cce3fe77726df3b72c45b881806f34c057abbf5aedde2db"
   },
   "playwright-cli": {
     "origin": "platform",
@@ -65,15 +73,19 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "bec66f3aa1357ff4c2c9777f8cd3fbfb4c941bb2191a507dfcaf0cda02dd8568"
+    "baseHash": "c625b09bf961708244f37a324de311212ca88f6516c36feae4772e12d5781b8d"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "18de66535b2bb3293a0049e72175eae1edb5cc489cb14d8fa0a06ca8a5b50ddd"
+    "baseHash": "c879dc21b0427d1da2b41df732246d59a3f5570782d3049e2719d12e7335742e"
   },
   "register-external-resource": {
     "origin": "platform",
     "baseHash": "6fa2ee0ac31851319354528818369b890c0b7e3a7c2cb59deb0f8f393b0702f4"
+  },
+  "resolve-dependency": {
+    "origin": "platform",
+    "baseHash": "ea062ab7a202fd62d1464066fdeb9f26e371fe8d4941d88681c1985a4948427a"
   },
   "security-design": {
     "origin": "platform",
@@ -81,11 +93,11 @@
   },
   "settle": {
     "origin": "platform",
-    "baseHash": "e5cde5842e23a6d0791a4b007a97c45115b77496c037a4f8c8d2b5d7ba15932a"
+    "baseHash": "063e7b375e96850d2f927c0e3342494b249788030b0a1d7bbb237d28ba231e6a"
   },
   "start": {
     "origin": "platform",
-    "baseHash": "a41efd713d85d48ffe5124c96ef24c136cedcd072c9634acc1263652bb810330"
+    "baseHash": "626dd9207d5ac347ec44caa8589317e0b94ca507ed94d347af7ea5601545f0b8"
   },
   "task-planning": {
     "origin": "platform",
@@ -101,6 +113,6 @@
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "00f5a81847eeb102f157c9c3405bdd3ac4d14e0105c49bcdc0f2232935b0a2cf"
+    "baseHash": "86c33faf714973ac0102c49a65e422d112f826eec8141cfb98037a46bbb3f2d4"
   }
 }
