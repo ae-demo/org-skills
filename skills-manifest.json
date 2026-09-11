@@ -1,11 +1,11 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "00dd26f4df47afb420be0c819e9b7f00efacbe5ff8f845cbefb768c9ed38925d"
+    "baseHash": "2f056d6e9ea7fba1d0d289f63c62adbd2c6a3aa24d409758ab0457ac98809626"
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "e5412894f54eb63864d57e724551c8869ceba02e1ef919b1f6c40ce9de1d743f"
+    "baseHash": "26ffcfe4e6d698aedfb357344c0cdbc9e8c368e145974eaae97b49138bd8a5ca"
   },
   "agent-browser": {
     "origin": "platform",
@@ -17,7 +17,7 @@
   },
   "api-management": {
     "origin": "platform",
-    "baseHash": "706875ed885e2d3787d0c76dd2b7e767c42509ac41a03cb5391dcd587cfc0f5e"
+    "baseHash": "561f89a0300f054e27b9820d540903ffe4cbc0261338a385833c11b3e8f22485"
   },
   "architecture": {
     "origin": "platform",
@@ -29,7 +29,7 @@
   },
   "ballerina": {
     "origin": "platform",
-    "baseHash": "acb148fce7562d86624c132415a84d1e8ea797a8c646cec4b7ba35eb640e76b3"
+    "baseHash": "7ec8fff5f324e0b84084da48d73223b32c833176ad37d1059decc60b7dc4ed5b"
   },
   "cell-design": {
     "origin": "platform",
@@ -89,7 +89,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "55753c78cf07d0fcbbe9b6d608342312bffa9761a4bcdcc22d4eabea72e09bfe"
+    "baseHash": "bb6252d8b944ed39f7fcc6167e5b77fef38d7d68bc54ddd2fb211b5044769bae"
   },
   "settle": {
     "origin": "platform",
@@ -105,7 +105,7 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "b091af69162cda0d0ca6ca6ce7c07c50412fbb4be86672c36df161d869f07d31"
+    "baseHash": "a534b0b66427007e250036ade023bcbd87c0a81c21b1ece500963101597a99b8"
   },
   "validation-criteria": {
     "origin": "platform",
@@ -113,6 +113,6 @@
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "86c33faf714973ac0102c49a65e422d112f826eec8141cfb98037a46bbb3f2d4"
+    "baseHash": "2099bad1c231fd3156e0fca4ccd788a97edee7befe31adb7ea90be809aa230d0"
   }
 }
