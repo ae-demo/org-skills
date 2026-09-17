@@ -1,11 +1,11 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "2f056d6e9ea7fba1d0d289f63c62adbd2c6a3aa24d409758ab0457ac98809626"
+    "baseHash": "d41000f40061dcb07028ca15c0dc91d4835285785a03c092faddd4ec19b90f03"
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "26ffcfe4e6d698aedfb357344c0cdbc9e8c368e145974eaae97b49138bd8a5ca"
+    "baseHash": "058d257d5333b6f87214581ba83be2bf467dd10ca1226ae5e8e7bab2c23c0f03"
   },
   "agent-browser": {
     "origin": "platform",
@@ -17,19 +17,23 @@
   },
   "api-management": {
     "origin": "platform",
-    "baseHash": "561f89a0300f054e27b9820d540903ffe4cbc0261338a385833c11b3e8f22485"
+    "baseHash": "6ebdd7d5682cb4b844fdf7f7f0fa6b9d5f4525044bb69ec4f299d53bde22b362"
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "27161433603efa87b79ab41b68591ead9e7904904a56d05acfa4b1286a18b564"
+    "baseHash": "bc3883bd1b539ac17c1a5a3cb7db9adde85da7e18a5a3c8b8702b9d4db1ca6af"
   },
   "astryx-design-system": {
     "origin": "platform",
     "baseHash": "f4866284ec21a2421b0a7476f683b494bcf7bb4bffc322c83893b0a190958058"
   },
+  "authorization-model": {
+    "origin": "platform",
+    "baseHash": "ebdf0a9caeed0c7bcf13f13006936ccd6b6c3a32119d5a0fbe3e536702108f4f"
+  },
   "ballerina": {
     "origin": "platform",
-    "baseHash": "7ec8fff5f324e0b84084da48d73223b32c833176ad37d1059decc60b7dc4ed5b"
+    "baseHash": "42a505b93638893eb2149e8143d8d75bc634aa8cc90a2b4993c8e36423e1a3c9"
   },
   "cell-design": {
     "origin": "platform",
@@ -41,11 +45,11 @@
   },
   "design": {
     "origin": "platform",
-    "baseHash": "cfb8bb632fc968923b70d4a8360ea14a8ffd1277328632621287628c4eb6e4f5"
+    "baseHash": "2069df1b22acd324d9b79045517dc8589a47fb8bad9828cf4be7b49877178309"
   },
   "go": {
     "origin": "platform",
-    "baseHash": "3eec138278f93d505f6b944648c0ef5e0c00ca6d579aba270ec1edd011f2ba0c"
+    "baseHash": "05dbe845f97e45260226a90f5b2402f145c76e601fd3b63f334503fd81b9bec3"
   },
   "grilling": {
     "origin": "platform",
@@ -53,15 +57,15 @@
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "6b9fa2e13c2be72efbc5a214e619a1f90c42eb8dd27d0c5be3a5e05df5129eae"
+    "baseHash": "382adaf9815622747b78d82577abacb47050fe6fa736c1a01aee7657d9e4346e"
   },
   "openapi-conventions": {
     "origin": "platform",
-    "baseHash": "7ea78491409567b95b098a5cd03b9033dda9353d1ba83444f5325a4599a1b214"
+    "baseHash": "f5f989860c99af2e3df7e7e86f362d1527c5f31839da3c2031158c6d156d9c9b"
   },
   "organization": {
     "origin": "platform",
-    "baseHash": "ec273c06e659ec9fda99773334a844a7f2ce198c9ec137c6e4700ed1768afd07"
+    "baseHash": "31e715b1218c7fcc763a53f487d08c76e14f4c2e069a7c3cc69c745c8183f73b"
   },
   "oxygen-ui-design-system": {
     "origin": "platform",
@@ -77,7 +81,7 @@
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "c879dc21b0427d1da2b41df732246d59a3f5570782d3049e2719d12e7335742e"
+    "baseHash": "de92b8e50a01e130f02917478c623863e7760ef205c19c632a89cb09311b47dc"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -89,7 +93,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "bb6252d8b944ed39f7fcc6167e5b77fef38d7d68bc54ddd2fb211b5044769bae"
+    "baseHash": "c6293d90ce83e20246ff82afa62fda101858ce5b8ade4a0fc0bf5467a713c115"
   },
   "settle": {
     "origin": "platform",
@@ -105,7 +109,7 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "a534b0b66427007e250036ade023bcbd87c0a81c21b1ece500963101597a99b8"
+    "baseHash": "a3ab966e8fd413e5739ffd94dfaea1d5ae462cf45c2dcac8796ac4bc9f744d0c"
   },
   "validation-criteria": {
     "origin": "platform",
@@ -113,6 +117,6 @@
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "2099bad1c231fd3156e0fca4ccd788a97edee7befe31adb7ea90be809aa230d0"
+    "baseHash": "c088ee8f8bd1d2427698e5e1b7b303f9f4a318e1479bd275da864cf7f8c3eb1a"
   }
 }
