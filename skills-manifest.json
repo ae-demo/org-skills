@@ -49,7 +49,7 @@
   },
   "go": {
     "origin": "platform",
-    "baseHash": "135a8ad993af1da96f3e8b33fdaa9047f0e096090c9b74056a3c1a88b7c95d73"
+    "baseHash": "752d69c3b6af7256fbaf5da3f76476b840507bc26d1a9045e5449003ee9a1cc9"
   },
   "grilling": {
     "origin": "platform",
@@ -57,7 +57,7 @@
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "0afdc19a99e852dbc1f34b39d2ac864a114a0893d751de7fc425b3398c4e3c6c"
+    "baseHash": "ca18c54efc15d8ec79dbb9a08072d53a2dac938c1e9e3b4fb032fd0b632dd5c4"
   },
   "openapi-conventions": {
     "origin": "platform",
@@ -81,7 +81,7 @@
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "49685a919cb4641f31435fd1a07b0765903ab7bf9592c91ed168c2e3d778a539"
+    "baseHash": "f77c389461e9e463b4b2852b297a7456560099d734cb2cc54ad786e5c3bbb739"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -109,7 +109,7 @@
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "c98bb5780656eaa9abe8cf462899b23a4ed067f0c4b168625181f18eaa3c51cb"
+    "baseHash": "8eeb0c9b1a8d92bd2dd21eb0f70d5ece8af2e169bd2003167dc476cc29790bfe"
   },
   "validation-criteria": {
     "origin": "platform",
