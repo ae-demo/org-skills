@@ -1,7 +1,7 @@
 {
   "aep": {
     "origin": "platform",
-    "baseHash": "678513dd765ee4ad1e9e3cb67678ac9d3de75b605f2d8b75a23e7062504587ee"
+    "baseHash": "7b5118ac2073bde16f4451182fa850235f1a49f332e1e1fae9c495eade829f23"
   },
   "aep-validation": {
     "origin": "platform",
@@ -57,7 +57,7 @@
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "ca18c54efc15d8ec79dbb9a08072d53a2dac938c1e9e3b4fb032fd0b632dd5c4"
+    "baseHash": "ab205e65ace96c2faa79789fb7c22ce25629cf2fed5af9db4750e2e3a3cb3328"
   },
   "openapi-conventions": {
     "origin": "platform",
