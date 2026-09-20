@@ -5,7 +5,7 @@
   },
   "aep-validation": {
     "origin": "platform",
-    "baseHash": "058d257d5333b6f87214581ba83be2bf467dd10ca1226ae5e8e7bab2c23c0f03"
+    "baseHash": "70015ade843d45eb6f8c1eeb05735f0693b1c01edfda26f038e66cb78bf75831"
   },
   "agent-browser": {
     "origin": "platform",
@@ -13,7 +13,7 @@
   },
   "amend": {
     "origin": "platform",
-    "baseHash": "28acb162ef74e910ff883a5fcbc502723fd50906521c503f96b6aef59df562b3"
+    "baseHash": "9f017a909b047ac76a2d7fa54901d73a38657d0b07f091f3e59a297f186f56d6"
   },
   "api-management": {
     "origin": "platform",
@@ -29,7 +29,7 @@
   },
   "authorization-model": {
     "origin": "platform",
-    "baseHash": "ebdf0a9caeed0c7bcf13f13006936ccd6b6c3a32119d5a0fbe3e536702108f4f"
+    "baseHash": "8b74cdd16ef2d27ac85fb0427f80918538f599492783f1effa83819928feecc9"
   },
   "ballerina": {
     "origin": "platform",
@@ -77,7 +77,7 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "c625b09bf961708244f37a324de311212ca88f6516c36feae4772e12d5781b8d"
+    "baseHash": "7639c38b45c852bec33f6d1d9a11b79f76e7f3c39f48e3e73564235a79784a5c"
   },
   "react-webapp": {
     "origin": "platform",
@@ -93,7 +93,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "66b49ad70157273be03cd9825ba11c43effd0fe750839e59ffe829aee3b83ab4"
+    "baseHash": "99813c4859579d2ace7352cee3a8a5a4f650bd5e556d9a6a3ba67e52cfbaf6a1"
   },
   "settle": {
     "origin": "platform",
@@ -101,7 +101,7 @@
   },
   "start": {
     "origin": "platform",
-    "baseHash": "626dd9207d5ac347ec44caa8589317e0b94ca507ed94d347af7ea5601545f0b8"
+    "baseHash": "56ab801ec4c0323f07afa7442ac666b345cb0886766832d574a012ab29f493e7"
   },
   "task-planning": {
     "origin": "platform",
@@ -113,7 +113,7 @@
   },
   "validation-criteria": {
     "origin": "platform",
-    "baseHash": "3cf856cac883fff1838efde83bc358776f8a2b454d99f865143a4e8e19adccfe"
+    "baseHash": "3eb24d1ff19479fdd949fd0e3f6250a226240983ccff130cc8b1647cb2fbb8fd"
   },
   "wireframes": {
     "origin": "platform",
