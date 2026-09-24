@@ -1,15 +1,15 @@
 {
   "acceptance-criteria": {
     "origin": "platform",
-    "baseHash": "fef778cd814ed7dc11a56ec22dabf455c7438d00bde3adf0eec44b49e5d94ea5"
+    "baseHash": "73e726ac19faaeafc31e804f178c19243492f8ed768b70e768f0c24bcfba0389"
   },
   "acceptance-run": {
     "origin": "platform",
-    "baseHash": "cc89276f72dd592662d5a51c934668935b02ef00817863eab01ce8c9a7b95698"
+    "baseHash": "3d544fce337a26ad21a14b26898ffb0d8ee77aec15ad9a1865e2a065df044dc4"
   },
   "aep": {
     "origin": "platform",
-    "baseHash": "8b975395fea1990ccebd567cff081ca8ef2282fbd573988754cbd4212e420376"
+    "baseHash": "13790a930a36753fe6ebe61586ae210149c2a9c7e1671caa4c5d79e4e274be51"
   },
   "agent-browser": {
     "origin": "platform",
@@ -49,11 +49,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "6d1bd1acf1b2ea436cfa3b50f429ce973568bcbcc8b6b2b3ef45a0f4d5456309"
+    "baseHash": "5da08d944d3049afe7e6e40002f39b939cac2883d6cda85131e83717a8a3193a"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "854b3f6604719b773a86fc4ff93e5a3385a0d6342dbc1a1cb46f07fc52e338c2"
+    "baseHash": "368fcc38fbd304d01bf6dbaf79ce95eb09216b4e14d7c40c40a8c2a707447bec"
   },
   "go": {
     "origin": "platform",
@@ -81,7 +81,7 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "7639c38b45c852bec33f6d1d9a11b79f76e7f3c39f48e3e73564235a79784a5c"
+    "baseHash": "31a2ce3a98c117d6428dd7c502b1a83b3dadab931f1d40b6f20a4f62525daed3"
   },
   "react-webapp": {
     "origin": "platform",
@@ -114,10 +114,6 @@
   "thunder-authentication": {
     "origin": "platform",
     "baseHash": "98df67224aa6834c77dfc43a8b9eca7adec6dcd7b77806005f4abf8c616f12c1"
-  },
-  "validation-criteria": {
-    "origin": "platform",
-    "baseHash": "7a3205dff4844e8b8b228064b1764bd2883159516af230f59d90cef1bec1c4b6"
   },
   "wireframes": {
     "origin": "platform",
