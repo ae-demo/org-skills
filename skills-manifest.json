@@ -1,15 +1,23 @@
 {
+  "acceptance-criteria": {
+    "origin": "platform",
+    "baseHash": "fef778cd814ed7dc11a56ec22dabf455c7438d00bde3adf0eec44b49e5d94ea5"
+  },
+  "acceptance-run": {
+    "origin": "platform",
+    "baseHash": "cc89276f72dd592662d5a51c934668935b02ef00817863eab01ce8c9a7b95698"
+  },
   "aep": {
     "origin": "platform",
-    "baseHash": "7b5118ac2073bde16f4451182fa850235f1a49f332e1e1fae9c495eade829f23"
-  },
-  "aep-validation": {
-    "origin": "platform",
-    "baseHash": "70015ade843d45eb6f8c1eeb05735f0693b1c01edfda26f038e66cb78bf75831"
+    "baseHash": "8b975395fea1990ccebd567cff081ca8ef2282fbd573988754cbd4212e420376"
   },
   "agent-browser": {
     "origin": "platform",
-    "baseHash": "b961c7f631e3be54b49ffd16f242e510db8964154b5f7a0cdbd3618530c774e5"
+    "baseHash": "1078e7a8131baaf447857e7649dcd9e561220b1bb0a6637ba7ac179d416f77a5"
+  },
+  "agent-building": {
+    "origin": "platform",
+    "baseHash": "ef1f8d313f62d2b6b4de03410090ced10c42e678d07d916a33831fdab973b5c7"
   },
   "amend": {
     "origin": "platform",
@@ -21,7 +29,7 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "4fce4a655e7ba03220fb2918a5b605e435de78e9675d62845789c545fb76b48f"
+    "baseHash": "3c61c050bc1a181754558c41edb233a728feb5a639b3634ebc7776300b6ac6fd"
   },
   "astryx-design-system": {
     "origin": "platform",
@@ -41,11 +49,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "31f3027adf01af8302f1412f733546791c2265350ec8b5922f592d56d9285b1f"
+    "baseHash": "6d1bd1acf1b2ea436cfa3b50f429ce973568bcbcc8b6b2b3ef45a0f4d5456309"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "2069df1b22acd324d9b79045517dc8589a47fb8bad9828cf4be7b49877178309"
+    "baseHash": "854b3f6604719b773a86fc4ff93e5a3385a0d6342dbc1a1cb46f07fc52e338c2"
   },
   "go": {
     "origin": "platform",
@@ -57,7 +65,7 @@
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "ab205e65ace96c2faa79789fb7c22ce25629cf2fed5af9db4750e2e3a3cb3328"
+    "baseHash": "e495a685978be95dcdce17f95ee5163bbd274e53585ecaa6b0ccc08f69683c10"
   },
   "openapi-conventions": {
     "origin": "platform",
@@ -71,17 +79,13 @@
     "origin": "platform",
     "baseHash": "427c86e42ac38f669b7f3c24fb46e0c441e645b4ade7ab5a6502e88ac6de3e06"
   },
-  "playwright-cli": {
-    "origin": "platform",
-    "baseHash": "9ba6ff2dbedbfe884d00ec3ff8b1ad19b7fc74596e3ee513f58410dcd22e00e3"
-  },
   "prd-contract": {
     "origin": "platform",
     "baseHash": "7639c38b45c852bec33f6d1d9a11b79f76e7f3c39f48e3e73564235a79784a5c"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "f77c389461e9e463b4b2852b297a7456560099d734cb2cc54ad786e5c3bbb739"
+    "baseHash": "cdf43dc3603411ee7c21d819c46ac2692ce60b8dc3f8eba592af3b21888f9743"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -113,7 +117,7 @@
   },
   "validation-criteria": {
     "origin": "platform",
-    "baseHash": "3eb24d1ff19479fdd949fd0e3f6250a226240983ccff130cc8b1647cb2fbb8fd"
+    "baseHash": "7a3205dff4844e8b8b228064b1764bd2883159516af230f59d90cef1bec1c4b6"
   },
   "wireframes": {
     "origin": "platform",
