@@ -124,12 +124,12 @@ conversation that does not exist under this user answers **404** — the same
 404 whether the id is foreign or simply wrong, so an id leaks nothing.
 
 **Message shapes never cross the wire.** `message` arrives as a plain string;
-`ModelMessage[]` lives only between your store and `generateText`. There is
+`ModelMessage[]` lives only between your store and the model call. There is
 nothing for a caller to normalise and nothing for it to mis-render.
 
 **Then validate, and answer 400.** A `message` that is missing, not a string,
-or empty is a bad REQUEST, not a server error — letting it through to
-`generateText` throws, which becomes a 500 and reads as the agent being
+or empty is a bad REQUEST, not a server error — letting it through to the
+model call throws, which becomes a 500 and reads as the agent being
 broken:
 
 ```ts
@@ -150,8 +150,8 @@ in config like every other injected value. Dependency: `pg`.
 **The database configuration is optional, and its absence is not a fault.**
 Never list a `MEMORY_DB_*` variable in `/healthz`'s `missing`: an agent run
 without one is correctly configured for the in-memory backing below, and
-reporting it missing answers 503 forever. `MODEL_API_KEY` is what `missing`
-is for.
+reporting it missing answers 503 forever. The required `MODEL_*` variables
+(see "Model access") are what `missing` is for.
 
 Map them exactly as below. The database name is the one to get right: the
 resource's output is `dbname`, so the variable is `MEMORY_DB_DBNAME` — not
@@ -314,11 +314,13 @@ The handler flow, exactly:
 //    conversationId present → loadConversation(id, userId); null → 404 { error: "conversation not found" }
 //    absent → id = crypto.randomUUID(), history = [] (no row yet — the first save creates it)
 // 4. const full = [...history, { role: "user", content: message }]
-// 5. const result = await runTurn(full)   // generateText, unchanged
-// 6. await saveConversation(id, userId, [...full, ...result.steps.flatMap(s => s.response.messages)])
+// 5. const turn = await traceTurn(
+//      { conversationId: id, model: config.modelName, system: genAiSystem, message },
+//      (hooks) => runTurn(full, hooks))   // see "The model call" and "Tracing"
+// 6. await saveConversation(id, userId, [...full, ...turn.steps.flatMap(s => s.response.messages)])
 //    — this INSERT..ON CONFLICT is the only place a row is created, so a turn
 //    that throws in step 5 leaves nothing in the store to orphan
-// 7. sendJson(res, 200, { conversationId: id, text: result.text, toolCalls: result.toolCalls })
+// 7. sendJson(res, 200, { conversationId: id, text: turn.text, toolCalls: turn.toolCalls })
 ```
 
 **Wrap the whole of that in `try`/`catch`, and never let a rejection escape.**
@@ -421,43 +423,147 @@ to fix, not this component's, so do not invent a local answer:
 
 ## Model access
 
-Three variables carry it, and all three are injected by the platform —
-`MODEL_ENDPOINT` (the base URL), `MODEL_NAME`, `MODEL_API_KEY`. Read them in
-config like everything else, and build the provider client from them:
+The platform injects the org's model connection as environment variables,
+governed or not — which one is not the agent's business:
+
+| Variable | What it is |
+|---|---|
+| `MODEL_ENDPOINT` | the base URL, ending in its version segment (`…/v1`) |
+| `MODEL_NAME` | the model id, as the host names it |
+| `MODEL_API_KEY` | the credential |
+| `MODEL_API_FORMAT` | `anthropic` or `openai-compatible` — which API the host speaks |
+| `MODEL_API_AUTH_SCHEME` | `x-api-key` or `bearer`; unset means the SDK's default |
+| `MODEL_API_KEY_HEADER` | normally unset — see below |
+
+Read them in config like everything else. **The first four are required:**
+`/healthz` lists each one that is unset in `missing`. None has a fallback —
+not even a model name: a default id is right for one host and a 404 on every
+other, so an agent missing `MODEL_NAME` is misconfigured and says so, rather
+than asking some host for a model it may not serve.
+
+The connection's format decides the SDK at runtime, so both provider packages
+are always installed (see "Layout") and the client is built by one switch:
 
 ```ts
+// agent.ts
 import { createAnthropic } from "@ai-sdk/anthropic";
+import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
+import type { LanguageModel } from "ai";
 
-const model = createAnthropic({
-  baseURL: process.env.MODEL_ENDPOINT,
-  apiKey:  process.env.MODEL_API_KEY,
-})(process.env.MODEL_NAME ?? "claude-sonnet-5");
+// Filled from config once /healthz's required variables are all set.
+export interface ModelSettings {
+  format: string;      // MODEL_API_FORMAT
+  baseURL: string;     // MODEL_ENDPOINT
+  apiKey: string;      // MODEL_API_KEY
+  modelName: string;   // MODEL_NAME
+  keyHeader?: string;  // MODEL_API_KEY_HEADER — normally unset
+  authScheme?: string; // MODEL_API_AUTH_SCHEME
+}
+
+export function modelClient(
+  { format, baseURL, apiKey, modelName, keyHeader, authScheme }: ModelSettings,
+): LanguageModel {
+  switch (format) {
+    case "anthropic":
+      return createAnthropic({
+        baseURL,
+        ...(keyHeader
+          ? { apiKey: "unused", headers: { [keyHeader]: apiKey } } // SDK will not start without an apiKey
+          : authScheme === "bearer"
+            ? { authToken: apiKey }                                // Authorization: Bearer
+            : { apiKey }),                                         // x-api-key
+      })(modelName);
+    case "openai-compatible":
+      return createOpenAICompatible({
+        name: "model",
+        baseURL,
+        includeUsage: true, // a streamed turn reports usage only when asked
+        // No apiKey under the override: this SDK sends Authorization only when
+        // given one, so the key goes out once, under the named header.
+        ...(keyHeader ? { headers: { [keyHeader]: apiKey } } : { apiKey }),
+      })(modelName);
+    default:
+      throw new Error(`unsupported MODEL_API_FORMAT: ${format}`);
+  }
+}
 ```
+
+**`openai-compatible` is `@ai-sdk/openai-compatible`, never `@ai-sdk/openai`.**
+The OpenAI package defaults to OpenAI's Responses API, which not every host
+serves; the compatible package speaks Chat Completions, the API an
+OpenAI-compatible host is compatible with. Keep
+`includeUsage: true`: without it a streamed reply carries no token counts, and
+the trace and the platform's cost view read zero.
 
 **`MODEL_ENDPOINT` is a base the SDK appends to, and it already ends in the
 API version segment** (`…/v1`). Never append a path of your own; the SDK asks
-for `<base>/messages` itself.
+for `<base>/messages` or `<base>/chat/completions` itself.
+
+### The model call — `streamText`, consumed to completion
+
+A turn is ONE function, and it streams. The reply is still one JSON body;
+streaming is how the turn reaches the model, not how it reaches the caller:
+
+```ts
+// agent.ts
+import { streamText, stepCountIs, type ModelMessage } from "ai";
+import type { TurnHooks } from "./tracing.js";
+// SYSTEM_PROMPT and MAX_ITERATIONS from prompt.ts, tools from tools.ts,
+// modelSettings() — the ModelSettings above — from config.ts.
+
+export async function runTurn(messages: ModelMessage[], hooks: TurnHooks) {
+  let failure: unknown;
+  const result = streamText({
+    model: modelClient(modelSettings()),
+    system: SYSTEM_PROMPT,
+    messages,
+    tools,
+    stopWhen: stepCountIs(MAX_ITERATIONS),
+    // A provider error arrives HERE, not as the rejection below.
+    onError: ({ error }) => { failure ??= error; },
+    // Opens and closes a span per model call and per tool call — "Tracing".
+    ...hooks,
+  });
+  // Awaiting these drives the stream, every tool step included, to its end.
+  const [text, steps, toolCalls, usage] = await Promise.all([
+    result.text, result.steps, result.toolCalls, result.totalUsage,
+  ]).catch((err: unknown) => { throw failure ?? err; });
+  if (failure !== undefined) throw failure;
+  return { text, steps, toolCalls, usage };
+}
+```
+
+**`streamText`, never `generateText`.** The two produce the same turn, but
+they validate different response shapes, and only the streamed one holds on
+every host: an Anthropic-format host other than Anthropic's own (Ollama's
+`/v1/messages`, measured) answers a reasoning model with thinking blocks the
+non-streaming parser rejects, so `generateText` fails every turn there with a
+200 in hand. One code path is what lets the org switch its connection without a
+rebuild.
+
+**Keep the `onError` capture and both rethrows.** `streamText` reports a
+provider failure to `onError`; its promises reject with a generic "no output"
+error instead, and once a step has finished they resolve with the steps so far.
+Without the capture, a refused step 2 of a tool loop becomes a half-finished
+turn saved as if it succeeded, and the handler's guardrail check never sees the
+upstream body it reads. With it, every failure is the original error, thrown.
+
+`usage` is the whole turn's, every step summed — the figure tracing records.
 
 ### `MODEL_API_KEY_HEADER` — a temporary override
 
 When the platform sets `MODEL_API_KEY_HEADER`, send the key under THAT header
-name instead of the SDK's own:
-
-```ts
-const keyHeader = process.env.MODEL_API_KEY_HEADER;   // normally unset
-const model = createAnthropic(
-  keyHeader
-    ? { baseURL, apiKey: "unused", headers: { [keyHeader]: apiKey } }
-    : { baseURL, apiKey },                            // the SDK's own default
-)(modelName);
-```
+name and no other — the branch above, on either format.
 
 This is a HACK with an expiry date. An agent whose model traffic is governed
 reaches the model through Agent Manager's per-agent proxy, and that proxy
-authenticates on `API-Key` — a name it does not yet let anyone configure. The
-Anthropic SDK hardcodes `x-api-key` and offers no way to rename it, so a
-governed agent's request arrives unauthenticated. Naming the header in the
-environment is what bridges the two.
+authenticates on `API-Key` — a name it does not yet let anyone configure. Each
+SDK has its own fixed header (`x-api-key` for Anthropic's, `Authorization:
+Bearer` for the OpenAI-compatible one) and no way to rename it, so a governed
+agent's request would arrive unauthenticated. Naming the header in the
+environment is what bridges the two. The Anthropic SDK refuses to start without
+an `apiKey`, so it is given a placeholder the proxy ignores; the
+OpenAI-compatible SDK is given none, so no stray `Authorization` goes out.
 
 **Write the branch, not the workaround alone.** Agent Manager's team has
 confirmed the proxy's header will become configurable; when it does the
@@ -484,22 +590,57 @@ an addition you make here:
 @opentelemetry/resources
 ```
 
-Write `src/tracing.ts` unconditionally. It is listed in the "Layout" tree, and
-it is inert when the platform sets no endpoint — the decision to export or not
-is made at runtime, below, never by omitting the file.
+### What a turn looks like in Agent Manager
+
+One trace per `/chat` turn, shaped as a tree:
+
+```
+invoke_agent <agent>          the turn: user message in, reply out, total tokens
+├── chat <model>              model call 1: messages sent, tool call requested
+├── execute_tool searchBooks  the tool: arguments in, result out
+└── chat <model>              model call 2: the tool result in, the reply out
+```
+
+Agent Manager decides what each span IS from `gen_ai.operation.name` —
+`invoke_agent`, `chat`, `execute_tool`. A span without it shows as `unknown`,
+and the trace view renders it as an opaque bar: that is what a single span
+wrapped around the whole turn produced before this section existed. Its viewer
+also reads every message and tool payload as a **JSON string**; an object or
+array attribute is dropped without a word.
+
+### `src/tracing.ts` — copy it whole
+
+Write it unconditionally. It is listed in the "Layout" tree, and it is inert
+when the platform sets no endpoint — the decision to export or not is made at
+runtime, below, never by omitting the file.
 
 ```ts
 // tracing.ts — imported for side effects from the top of main.ts, before
-// anything creates a model client.
-import { trace } from "@opentelemetry/api";
+// anything creates a model client. Also exports traceTurn, which main.ts
+// wraps every /chat turn in.
+import { context, trace, SpanKind, SpanStatusCode, type Span } from "@opentelemetry/api";
 import { NodeTracerProvider, BatchSpanProcessor } from "@opentelemetry/sdk-trace-node";
 import { OTLPTraceExporter } from "@opentelemetry/exporter-trace-otlp-http";
 import { Resource } from "@opentelemetry/resources";
+import type {
+  LanguageModelCallEndEvent,
+  LanguageModelCallStartEvent,
+  LanguageModelUsage,
+  ModelMessage,
+  ToolExecutionEndEvent,
+  ToolExecutionStartEvent,
+} from "ai";
 
 const endpoint = process.env.AMP_OTEL_ENDPOINT;
 const apiKey = process.env.AMP_AGENT_API_KEY;
+const agentName = process.env.OTEL_SERVICE_NAME ?? "agent";
 
-export const tracer = trace.getTracer("agent");
+// Prompts, completions, tool arguments and results go on spans unless the
+// platform sets this to "false". ON when unset, as Agent Manager's own
+// instrumentation defaults.
+const recordContent = process.env.TRACELOOP_TRACE_CONTENT !== "false";
+
+const tracer = trace.getTracer("agent");
 
 if (endpoint && apiKey) {
   const provider = new NodeTracerProvider({
@@ -508,9 +649,7 @@ if (endpoint && apiKey) {
     // in the org looks identical in the trace view — spans all correct, view
     // useless. The platform supplies the name in OTEL_SERVICE_NAME; a bare
     // NodeTracerProvider does not run resource detection, so read it.
-    resource: new Resource({
-      "service.name": process.env.OTEL_SERVICE_NAME ?? "agent",
-    }),
+    resource: new Resource({ "service.name": agentName }),
     spanProcessors: [
       new BatchSpanProcessor(
         new OTLPTraceExporter({
@@ -527,34 +666,243 @@ if (endpoint && apiKey) {
     void provider.shutdown().finally(() => process.exit(0));
   });
 }
-```
 
-Wrap every model call:
+// The streamText callbacks that open and close the per-step spans. Declared
+// as METHODS, not function-typed properties: streamText types its callbacks by
+// the agent's own tool set, and only a method's parameter is checked loosely
+// enough to accept that narrower event. As properties, every agent with typed
+// tools fails to compile.
+export interface TurnHooks {
+  onLanguageModelCallStart(e: LanguageModelCallStartEvent): void;
+  onLanguageModelCallEnd(e: LanguageModelCallEndEvent): void;
+  onToolExecutionStart(e: ToolExecutionStartEvent): void;
+  onToolExecutionEnd(e: ToolExecutionEndEvent): void;
+}
 
-```ts
-import { tracer } from "./tracing.js";
+export interface TurnTrace {
+  conversationId: string;
+  model: string; // MODEL_NAME
+  system: string; // "anthropic" | "openai" — see "Tracing"
+  message: string; // this turn's user message
+}
 
-const model = process.env.MODEL_NAME ?? "claude-sonnet-5";
+// One agent turn: an `invoke_agent` span, with a `chat` child per model call
+// and an `execute_tool` child per tool call. Agent Manager classifies each
+// span by gen_ai.operation.name; a span without one shows as "unknown".
+export async function traceTurn<T extends { text: string; usage: LanguageModelUsage }>(
+  turn: TurnTrace,
+  run: (hooks: TurnHooks) => Promise<T>,
+): Promise<T> {
+  const agent = tracer.startSpan(`invoke_agent ${agentName}`, {
+    attributes: {
+      "gen_ai.operation.name": "invoke_agent",
+      "gen_ai.agent.name": agentName,
+      "gen_ai.conversation.id": turn.conversationId,
+      "gen_ai.system": turn.system,
+      "gen_ai.request.model": turn.model,
+    },
+  });
+  const parent = trace.setSpan(context.active(), agent);
+  if (recordContent) {
+    agent.setAttribute("gen_ai.input.messages", toMessages([{ role: "user", content: turn.message }]));
+  }
 
-const result = await tracer.startActiveSpan(`chat ${model}`, async (span) => {
+  // Model calls in a turn run one after another, so one open span is enough;
+  // tool calls in a step may run in parallel, so they are keyed by call id.
+  let chat: Span | undefined;
+  const toolSpans = new Map<string, Span>();
+
+  const hooks: TurnHooks = {
+    onLanguageModelCallStart: (e) => {
+      // A call that is retried starts again without having ended.
+      if (chat) {
+        chat.setStatus({ code: SpanStatusCode.ERROR, message: "model call retried" });
+        chat.end();
+      }
+      chat = tracer.startSpan(
+        `chat ${e.modelId}`,
+        {
+          kind: SpanKind.CLIENT,
+          attributes: {
+            "gen_ai.operation.name": "chat",
+            "gen_ai.system": turn.system,
+            "gen_ai.request.model": e.modelId,
+          },
+        },
+        parent,
+      );
+      if (recordContent) {
+        chat.setAttribute("gen_ai.input.messages", toMessages(e.messages));
+        if (e.instructions !== undefined) {
+          chat.setAttribute(
+            "gen_ai.system_instructions",
+            typeof e.instructions === "string" ? e.instructions : JSON.stringify(e.instructions),
+          );
+        }
+      }
+    },
+    onLanguageModelCallEnd: (e) => {
+      if (!chat) return;
+      chat.setAttributes({
+        "gen_ai.response.model": e.modelId,
+        "gen_ai.response.finish_reasons": [e.finishReason],
+        "gen_ai.usage.input_tokens": e.usage.inputTokens ?? 0,
+        "gen_ai.usage.output_tokens": e.usage.outputTokens ?? 0,
+      });
+      if (recordContent) {
+        chat.setAttribute(
+          "gen_ai.output.messages",
+          JSON.stringify([{ role: "assistant", parts: e.content.flatMap(toPart) }]),
+        );
+      }
+      chat.setStatus({ code: SpanStatusCode.OK });
+      chat.end();
+      chat = undefined;
+    },
+    onToolExecutionStart: (e) => {
+      const span = tracer.startSpan(
+        `execute_tool ${e.toolCall.toolName}`,
+        {
+          attributes: {
+            "gen_ai.operation.name": "execute_tool",
+            "gen_ai.tool.name": e.toolCall.toolName,
+            "gen_ai.tool.call.id": e.toolCall.toolCallId,
+          },
+        },
+        parent,
+      );
+      if (recordContent) {
+        span.setAttribute("gen_ai.tool.call.arguments", JSON.stringify(e.toolCall.input ?? {}));
+      }
+      toolSpans.set(e.toolCall.toolCallId, span);
+    },
+    onToolExecutionEnd: (e) => {
+      const span = toolSpans.get(e.toolCall.toolCallId);
+      if (!span) return;
+      toolSpans.delete(e.toolCall.toolCallId);
+      if (e.toolOutput.type === "tool-error") {
+        span.setAttribute("error.type", "tool_error");
+        // An error message can carry the provider's response body: content.
+        span.setStatus({
+          code: SpanStatusCode.ERROR,
+          ...(recordContent ? { message: String(e.toolOutput.error) } : {}),
+        });
+      } else {
+        if (recordContent) {
+          span.setAttribute("gen_ai.tool.call.result", JSON.stringify(e.toolOutput.output ?? null));
+        }
+        span.setStatus({ code: SpanStatusCode.OK });
+      }
+      span.end();
+    },
+  };
+
   try {
-    const r = await generateText({ model: modelClient, prompt });
-    span.setAttributes({
-      "gen_ai.system": "anthropic",
-      "gen_ai.request.model": model,
-      "gen_ai.usage.input_tokens": r.usage?.inputTokens ?? 0,
-      "gen_ai.usage.output_tokens": r.usage?.outputTokens ?? 0,
+    const result = await run(hooks);
+    agent.setAttributes({
+      "gen_ai.usage.input_tokens": result.usage.inputTokens ?? 0,
+      "gen_ai.usage.output_tokens": result.usage.outputTokens ?? 0,
     });
-    return r;
+    if (recordContent) {
+      agent.setAttribute("gen_ai.output.messages", toMessages([{ role: "assistant", content: result.text }]));
+    }
+    agent.setStatus({ code: SpanStatusCode.OK });
+    return result;
   } catch (err) {
-    span.recordException(err as Error);
-    span.setStatus({ code: 2 }); // ERROR
+    // The class name is metadata; the message and stack are content.
+    agent.setAttribute("error.type", (err as Error)?.name ?? "Error");
+    if (recordContent) {
+      agent.recordException(err as Error);
+      agent.setStatus({ code: SpanStatusCode.ERROR, message: String((err as Error)?.message ?? err) });
+    } else {
+      agent.setStatus({ code: SpanStatusCode.ERROR });
+    }
     throw err;
   } finally {
-    span.end(); // a span never ended is a span never exported
+    // A failed model call never reaches its end callback: close what is open
+    // so no span is lost. A span never ended is a span never exported.
+    for (const span of [chat, ...toolSpans.values()]) {
+      if (!span) continue;
+      span.setStatus({ code: SpanStatusCode.ERROR, message: "turn ended before this step completed" });
+      span.end();
+    }
+    agent.end();
   }
-});
+}
+
+// OpenTelemetry GenAI message shape, as a JSON string — Agent Manager reads
+// these attributes as strings and drops anything else.
+type Part =
+  | { type: "text"; content: string }
+  | { type: "tool_call"; id: string; name: string; arguments: unknown }
+  | { type: "tool_call_response"; id: string; response: unknown };
+
+function toMessages(messages: ReadonlyArray<ModelMessage>): string {
+  return JSON.stringify(
+    messages.map((m) => ({
+      role: m.role,
+      parts: typeof m.content === "string"
+        ? [{ type: "text", content: m.content }]
+        : m.content.flatMap(toPart),
+    })),
+  );
+}
+
+// One message part. Reasoning, files and sources are not message content.
+function toPart(part: { type: string }): Part[] {
+  const p = part as { type: string } & Record<string, unknown>;
+  switch (p.type) {
+    case "text":
+      return [{ type: "text", content: String(p.text) }];
+    case "tool-call":
+      return [{ type: "tool_call", id: String(p.toolCallId), name: String(p.toolName), arguments: p.input }];
+    case "tool-result":
+      // The SDK wraps a result as { type: "json" | "text", value }; the value
+      // is the result.
+      return [{ type: "tool_call_response", id: String(p.toolCallId), response: (p.output as { value?: unknown })?.value ?? p.output }];
+    default:
+      return [];
+  }
+}
 ```
+
+The handler wraps each turn in it — step 5 of the handler flow — and `runTurn`
+spreads the hooks into `streamText` (see "The model call"). `genAiSystem` is the
+OpenTelemetry name of the API the client speaks, not of the host behind it:
+
+```ts
+const genAiSystem = config.modelApiFormat === "openai-compatible" ? "openai" : "anthropic";
+```
+
+**The hooks are the AI SDK's own lifecycle callbacks, not a wrapper around
+`execute`.** `onLanguageModelCallStart/End` fire once per model call and
+`onToolExecutionStart/End` once per tool call, with the messages, the model's
+output content, the tool input and the tool result in hand. Wrapping each
+generated tool's `execute` instead would see the tool but never the model call,
+and a turn would still show one opaque span per step.
+
+**Every span is closed on every path.** A model call that fails never reaches
+its end callback; the `finally` closes whatever is still open as `ERROR`, so a
+turn that dies in step 2 still shows step 1, the tool it ran, and where it
+stopped. A span never ended is a span never exported.
+
+### Content: on unless the platform says otherwise
+
+`TRACELOOP_TRACE_CONTENT` decides whether spans carry message content — the
+user's message, the system prompt, every model input and output, and tool
+arguments and results. The platform sets it (`true` by default, as Agent
+Manager's own instrumentation defaults); unset is treated as `true`, and only
+the exact value `false` turns content off. With it off, the tree, the timings,
+the token counts and the outcome are all still there — only the text is gone.
+
+Content is the agent's most sensitive traffic. **Never add a content attribute
+outside a `recordContent` check**, and never log it instead: the platform's
+switch is only a switch if every path honours it. Error messages count: a
+provider's error can echo the request or the data behind it, so with content
+off a failed span carries its `error.type` and an `ERROR` status, and no
+message or recorded exception.
+
+### Mistakes that look like a broken collector
 
 **Reading the variables into config is not instrumenting.** An agent that
 loads `AMP_OTEL_ENDPOINT` and never constructs an exporter emits nothing, and
@@ -562,27 +910,10 @@ nothing about it looks broken — the pod is healthy, the turns succeed, and the
 trace store is simply empty. If you add the config entries, add the provider and
 the spans in the same change.
 
-**Instrument the model call by hand.** OpenLLMetry (`@traceloop/node-server-sdk`)
-does not auto-instrument the Vercel AI SDK: installing it produces a tracer that
-emits nothing for `generateText`, which reads as a broken collector rather than
-as a missing instrumentation. Wrap each model call in a span yourself, following
-the OpenTelemetry `gen_ai.*` semantic conventions:
-
-| attribute | value |
-|---|---|
-| `gen_ai.system` | `anthropic` |
-| `gen_ai.request.model` | `MODEL_NAME` |
-| `gen_ai.usage.input_tokens` | from the SDK result's `usage` |
-| `gen_ai.usage.output_tokens` | from the SDK result's `usage` |
-
-Name the span `chat <model>`, and record tool calls as child spans so a turn
-reads as one tree.
-
-**Respect `TRACELOOP_TRACE_CONTENT`.** When it is `false` — which is the
-platform default — never put prompts, completions, or tool arguments on a span.
-Model, token counts, latency and outcome are what the platform observes; message
-content is the agent's most sensitive traffic and exporting it is a decision with
-a privacy review behind it, not a default. Treat an unset value as `false`.
+**Instrument by hand; no auto-instrumentation covers this stack.** OpenLLMetry
+(`@traceloop/node-server-sdk`) does not instrument the Vercel AI SDK: installing
+it produces a tracer that emits nothing for `streamText`. Do not add it, and do
+not add any `@opentelemetry/*` package beyond the four above.
 
 ## Constraints
 
@@ -643,7 +974,7 @@ credential on the request, never from the transcript.
 just the reply, and load it back next request. An agent given only its own
 prose has lost everything its tools told it, and will re-look-up or invent
 identifiers it already had. The save in step 6 of the handler flow above is
-where this lives — `steps.flatMap`, NOT `result.response.messages`, which is
+where this lives — `steps.flatMap`, NOT the result's `response.messages`, which is
 the LAST step only and silently drops every tool call and result.
 
 **Return tool errors to the model; do not throw.** A `409 cutoff has passed` is
@@ -657,7 +988,7 @@ is the deliberate exception, and only where there is no database to reach:
 never reach for process memory as a cache, a fallback, or a place to keep
 anything the store does not already hold.
 
-**Bound the loop** with `stopWhen: stepCountIs(max_iterations)`. An unbounded
+**Bound the loop** with `stopWhen: stepCountIs(max_iterations)`, as `runTurn` does. An unbounded
 agent spends money until something else stops it.
 
 **Start even when unconfigured.** The component contract requires a component to
@@ -679,7 +1010,7 @@ Nothing from `specs/` ships in the component. The image contains compiled code.
     ├── prompt.ts         # GENERATED from the AFM body
     ├── tools.ts          # GENERATED from the dependency's openapi.yaml
     ├── config.ts         # env, read once
-    ├── tracing.ts        # OpenTelemetry setup — see "Tracing"
+    ├── tracing.ts        # OpenTelemetry setup + traceTurn — see "Tracing"
     ├── agent.ts          # the AI SDK loop
     └── main.ts           # HTTP surface + per-request credential context
 ```
@@ -694,6 +1025,7 @@ this list:**
 "dependencies": {
   "ai": "^7.0.2",
   "@ai-sdk/anthropic": "^4.0.0",
+  "@ai-sdk/openai-compatible": "^3.0.55",
   "zod": "^4.3.6",
   "pg": "^8.13.0",
   "@opentelemetry/api": "^1.9.0",
@@ -717,12 +1049,12 @@ versions are not compatible, and a run that resolves its own version lands one
 behind and writes code against the wrong API. `pg` is pinned for the same
 reason. These majors are what the platform runs (`services/agents`).
 
-**The model provider comes from the document's `model.provider`.** Map it to its
-package: `anthropic` → `@ai-sdk/anthropic` (`createAnthropic`), `openai` →
-`@ai-sdk/openai` (`createOpenAI`). **When the document does not name one, use
-Anthropic** — the platform default. Never infer a provider from `model.url` or
-`model.name`; a wrong guess builds against a different SDK entirely and only
-fails when a real key is supplied.
+Both provider packages are required, not a choice: **the model provider is
+chosen at runtime from `MODEL_API_FORMAT`**, never at build time — not from the
+document's `model.provider`, and never inferred from `model.url` or
+`model.name`. The org can switch its connection without a rebuild, and an agent
+compiled against one SDK would stop answering the day it did. See "Model
+access".
 
 ```dockerfile
 FROM node:22-slim AS builder
@@ -761,13 +1093,6 @@ const { authorization } = callContext.getStore() ?? {};
 > PR description that evaluation was skipped because it is disabled here. The
 > scenario file is still authored at design time, so nothing else changes and
 > turning this back on is a one-word change to this line.
->
-> Why it is off: the harness boots the agent with only `MODEL_API_KEY`
-> forwarded, so an agent whose model access also needs `MODEL_ENDPOINT` and
-> `MODEL_NAME` — which is every agent once its model access is governed through
-> the AI gateway — fails at boot and scores 0/6 for a reason that has nothing to
-> do with its behaviour. Re-enable once the harness forwards the whole
-> `MODEL_*` set.
 
 Once `npm run build` exits 0, and before the PR, run the agent's scenarios
 against the agent you just built. `specs/validation/agent-scenarios.json` was
@@ -822,15 +1147,17 @@ miss. A simulated user drives the conversation and WITHHOLDS the facts the
 scenario says to withhold — that is what makes "asks for what it needs"
 observable rather than asserted.
 
-The organisation's Anthropic key is the credential, for the agent under test
-and for the judge alike. The harness finds it itself, under either of the two
-names it can arrive as: `AEP_EVAL_ANTHROPIC_API_KEY` in a build pod, where the
-platform mounts the org's default key, and `ANTHROPIC_API_KEY` outside one.
-Never `CLAUDE_CODE_OAUTH_TOKEN`, which is the platform's own coding budget and
-authenticates none of the API calls the judge makes. **Pass no key on the
-command line and set none yourself** — a key you export is a key that ends up
-in a build log. In particular, if the harness reports no key, do NOT copy the
-`ANTHROPIC_API_KEY` you can see into it: in a pod that one is the
+The organisation's model connection is the credential, for the agent under
+test and for the judge alike: the harness boots the agent with the same
+`MODEL_*` variables a deployment gives it, and grades on the same connection.
+The harness finds it itself. In a build pod the platform mounts it as
+`AEP_EVAL_MODEL_API_KEY` beside the connection's format, URL, model and auth
+scheme; outside one the harness falls back to `ANTHROPIC_API_KEY`, on
+Anthropic's API. Never `CLAUDE_CODE_OAUTH_TOKEN`, which is the platform's own
+coding budget and authenticates none of the API calls the judge makes. **Pass
+no key on the command line and set none yourself** — a key you export is a key
+that ends up in a build log. In particular, if the harness reports no key, do
+NOT copy the `ANTHROPIC_API_KEY` you can see into it: in a pod that one is the
 organisation's CODING credential, which it may bill separately on purpose, and
 the platform withheld it from evaluation deliberately. No evaluation is the
 correct outcome there, and it is report content like any other.
