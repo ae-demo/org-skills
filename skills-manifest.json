@@ -13,7 +13,7 @@
   },
   "agent-building": {
     "origin": "platform",
-    "baseHash": "1248cd7da98bd7c172c852c247c40fc8fe443d1ec7d3793f14902290a8bb019a"
+    "baseHash": "80205650896b5c8d0ddd031afcdc6cc191dc6c3801ba5f96148ae551a6b5b5a1"
   },
   "amend": {
     "origin": "platform",
@@ -25,7 +25,7 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "3c61c050bc1a181754558c41edb233a728feb5a639b3634ebc7776300b6ac6fd"
+    "baseHash": "91e65a6f1dbefb0c302cef479f6495c1b29e2ab392d9034a28dd536b35a4a57c"
   },
   "astryx-design-system": {
     "origin": "platform",
@@ -77,11 +77,11 @@
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "31a2ce3a98c117d6428dd7c502b1a83b3dadab931f1d40b6f20a4f62525daed3"
+    "baseHash": "81b16bb60d10d59d6050365d25d506b2e5b891e61299b952df06f126f39754d3"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "cdf43dc3603411ee7c21d819c46ac2692ce60b8dc3f8eba592af3b21888f9743"
+    "baseHash": "718c4cae95be707d248a92b767605cdfadce2745cb515c4ce057f31ae5f0940e"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -101,7 +101,7 @@
   },
   "start": {
     "origin": "platform",
-    "baseHash": "56ab801ec4c0323f07afa7442ac666b345cb0886766832d574a012ab29f493e7"
+    "baseHash": "1578cc1fe95dfb379bebb4f4d37039746d170fb5dc53ee3b904a78af9afc4a2e"
   },
   "task-planning": {
     "origin": "platform",
