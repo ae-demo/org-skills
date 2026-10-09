@@ -1,31 +1,27 @@
 {
   "acceptance-criteria": {
     "origin": "platform",
-    "baseHash": "73e726ac19faaeafc31e804f178c19243492f8ed768b70e768f0c24bcfba0389"
+    "baseHash": "b8fbc0a3fa8a7fce98030bf90f0fdce33ef700191902fdd978d730975cbbed7d"
   },
   "aep": {
     "origin": "platform",
-    "baseHash": "fed1f65a13eddad8b3378ddaf620928148104536f3ca9a11e770cc61895ac163"
+    "baseHash": "373b22f58af8c6a688189cd64e88c0a033013051044840cb1cd8e467fe21fef3"
   },
   "agent-browser": {
     "origin": "platform",
-    "baseHash": "7793bec1c2d808d311278728d563266db070f7205f17a3bf6f4295efcf18dd5e"
+    "baseHash": "6d65c42d4b0fdc1530327403dc38e9dec2a45b072701ff5f62345ee7b94b102d"
   },
   "agent-building": {
     "origin": "platform",
-    "baseHash": "80205650896b5c8d0ddd031afcdc6cc191dc6c3801ba5f96148ae551a6b5b5a1"
-  },
-  "amend": {
-    "origin": "platform",
-    "baseHash": "9f017a909b047ac76a2d7fa54901d73a38657d0b07f091f3e59a297f186f56d6"
+    "baseHash": "1217f42d344ccf866314f7e659fc4575247472000ea76dc603781aabebebc15c"
   },
   "api-management": {
     "origin": "platform",
-    "baseHash": "78cd87f2df530640f7a3f3fe15f3b65ff4b5ae1e3be372ab14ce6e8d26ea43e4"
+    "baseHash": "06c8c406ff29e2cd779f128070cf0ad8e8b5a22784a920cb1984ca8e813941fb"
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "91e65a6f1dbefb0c302cef479f6495c1b29e2ab392d9034a28dd536b35a4a57c"
+    "baseHash": "b4717f86cea3e33180377c4822d5ac0bb663077791e29cea6c52e2d78f7412b2"
   },
   "astryx-design-system": {
     "origin": "platform",
@@ -37,7 +33,7 @@
   },
   "ballerina": {
     "origin": "platform",
-    "baseHash": "2e6423d5b8e650358ad5e9a6d9bf1ae2754aefa3994cf7e5ccc84d1a9c08c563"
+    "baseHash": "1c43f284bf7f28685f0efb37347787360f3b40253e4e724688b16fd7fe2ad14b"
   },
   "cell-design": {
     "origin": "platform",
@@ -49,39 +45,51 @@
   },
   "design": {
     "origin": "platform",
-    "baseHash": "368fcc38fbd304d01bf6dbaf79ce95eb09216b4e14d7c40c40a8c2a707447bec"
+    "baseHash": "8ec325f18d6f4840272bc9eeb29f84049adbe4e22981e2ee09614d679a023f66"
   },
   "go": {
     "origin": "platform",
-    "baseHash": "752d69c3b6af7256fbaf5da3f76476b840507bc26d1a9045e5449003ee9a1cc9"
+    "baseHash": "2485a1de5b4c8fb50d30c5ad1e0de2eb5d4668541664fecb28cabaaab8e6bc42"
   },
   "grilling": {
     "origin": "platform",
-    "baseHash": "ca5a92e5b72caefae2a1208fbbf08563a3bf44685544f2700e33fbf98a582339"
+    "baseHash": "1e84d18590d6b45ca4bc19c6f801349edd7985b7965aff6e432d39276a0047c0"
+  },
+  "interview": {
+    "origin": "platform",
+    "baseHash": "2570f6904feb20316b0386a186f84c37f36f86bc644301923501afcf9be22369"
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "75a7aa870849aab504fb55ec40c81953497d802e908179e42486255c71a37ed0"
+    "baseHash": "801c037b3b2bc792476b18abdc71f4f8e29c13641da24f3bbfc9d76557e6429a"
   },
   "openapi-conventions": {
     "origin": "platform",
-    "baseHash": "f5f989860c99af2e3df7e7e86f362d1527c5f31839da3c2031158c6d156d9c9b"
+    "baseHash": "9cd7da3a163b754c19b83a557bb76bfd9e85fc2f85574a814a09d8a4392b2ba2"
   },
   "organization": {
     "origin": "platform",
-    "baseHash": "31e715b1218c7fcc763a53f487d08c76e14f4c2e069a7c3cc69c745c8183f73b"
+    "baseHash": "f30ce84194098111c73bfd7d3ebb6a37c4a15797471de5838e70922a66feb7b8"
   },
   "oxygen-ui-design-system": {
     "origin": "platform",
-    "baseHash": "427c86e42ac38f669b7f3c24fb46e0c441e645b4ade7ab5a6502e88ac6de3e06"
+    "baseHash": "dbcb20fea15b3b33fb8b3bcfea970caa537f7b58d21965095e9907da210b71fa"
   },
   "prd-contract": {
     "origin": "platform",
-    "baseHash": "81b16bb60d10d59d6050365d25d506b2e5b891e61299b952df06f126f39754d3"
+    "baseHash": "92255d9500998c09de175ad1a83dd4ae8e3de1fa8bf14cf2a855a11ecc227b22"
+  },
+  "prototype": {
+    "origin": "platform",
+    "baseHash": "0de04f19750e35d23cbb44241121c950295e3c16b46a18abf03b14a3c8d2142a"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "718c4cae95be707d248a92b767605cdfadce2745cb515c4ce057f31ae5f0940e"
+    "baseHash": "ebd2ceeb80540934abe9dd0a567e1316f07349a94342f4b6f23bcc21754a900c"
+  },
+  "refine": {
+    "origin": "platform",
+    "baseHash": "e5a97e9906af3420c4cf1d3d0a8956a840849a9509476cfc95e6522288904bb6"
   },
   "register-external-resource": {
     "origin": "platform",
@@ -93,30 +101,26 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "99813c4859579d2ace7352cee3a8a5a4f650bd5e556d9a6a3ba67e52cfbaf6a1"
-  },
-  "settle": {
-    "origin": "platform",
-    "baseHash": "063e7b375e96850d2f927c0e3342494b249788030b0a1d7bbb237d28ba231e6a"
+    "baseHash": "48cc3ff2444ef056a15406f6697c4edc60f655b6f33fb42fbb133186825d6a5c"
   },
   "start": {
     "origin": "platform",
-    "baseHash": "1578cc1fe95dfb379bebb4f4d37039746d170fb5dc53ee3b904a78af9afc4a2e"
+    "baseHash": "91e6f590e8b347648472cfabd94a8430ebc432086eed3a6b9fe0f597f6991bc0"
   },
   "task-planning": {
     "origin": "platform",
-    "baseHash": "42ef7ebe835d07537ecd93054ca7c8a4b5846339a590df022e32b4d47af95987"
+    "baseHash": "fcc1f7a3cd20eccaae3108f19a42edca20cfa7dbb0d154a78b19ea5d772147da"
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "98df67224aa6834c77dfc43a8b9eca7adec6dcd7b77806005f4abf8c616f12c1"
+    "baseHash": "40732b8be7ada7854540a9fadb57a7eb2dbdf8d3392800f236b4df0574e12870"
   },
   "validation-task": {
     "origin": "platform",
-    "baseHash": "0c1f2f857279496499e452be38c508046c22b73f6386bdcf0f87a21dcf9f86b2"
+    "baseHash": "18a5f28b3732a1f62cef94f7b1205489a4d617a225184df4db2b27373ebfc599"
   },
   "wireframes": {
     "origin": "platform",
-    "baseHash": "0175a322f1fce1a7573a36d2f88d41bad8651136c348e61503021abf58c0bc98"
+    "baseHash": "5ac7c62e9093b8ba79c5bc3988a8a3a18eb923995e322b41b704677da2184d85"
   }
 }
