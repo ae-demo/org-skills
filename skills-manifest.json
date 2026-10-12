@@ -1,11 +1,11 @@
 {
   "acceptance-criteria": {
     "origin": "platform",
-    "baseHash": "b8fbc0a3fa8a7fce98030bf90f0fdce33ef700191902fdd978d730975cbbed7d"
+    "baseHash": "690a3e5f45899411bc4389040f7fb68327f2b00ef5d349cd7e4b5b29dcf18b27"
   },
   "aep": {
     "origin": "platform",
-    "baseHash": "373b22f58af8c6a688189cd64e88c0a033013051044840cb1cd8e467fe21fef3"
+    "baseHash": "3d2b5618c3fb3c2eb910301c6dd796a5a1feac94be3bddc6068da2fa60749175"
   },
   "agent-browser": {
     "origin": "platform",
@@ -13,7 +13,7 @@
   },
   "agent-building": {
     "origin": "platform",
-    "baseHash": "1217f42d344ccf866314f7e659fc4575247472000ea76dc603781aabebebc15c"
+    "baseHash": "855fe46da89bfda341a19c0a892d59d90a97b91222b5dcec71775d5a872d80f7"
   },
   "api-management": {
     "origin": "platform",
@@ -21,7 +21,7 @@
   },
   "architecture": {
     "origin": "platform",
-    "baseHash": "b4717f86cea3e33180377c4822d5ac0bb663077791e29cea6c52e2d78f7412b2"
+    "baseHash": "e120c52c169fb409e66b24342b8805825b2b6d2d913256091568bb3decd6fd6a"
   },
   "astryx-design-system": {
     "origin": "platform",
@@ -29,7 +29,7 @@
   },
   "authorization-model": {
     "origin": "platform",
-    "baseHash": "8b74cdd16ef2d27ac85fb0427f80918538f599492783f1effa83819928feecc9"
+    "baseHash": "94e4ec2f1eae617b24dad26ed17fae9cff39290ce0bc916494097b7dc425425c"
   },
   "ballerina": {
     "origin": "platform",
@@ -41,11 +41,11 @@
   },
   "console": {
     "origin": "platform",
-    "baseHash": "5da08d944d3049afe7e6e40002f39b939cac2883d6cda85131e83717a8a3193a"
+    "baseHash": "a60587e9396fef4f817149adf7f5b368f6326acb6092c0a2fa6264eb1b8f08b0"
   },
   "design": {
     "origin": "platform",
-    "baseHash": "8ec325f18d6f4840272bc9eeb29f84049adbe4e22981e2ee09614d679a023f66"
+    "baseHash": "b8d5a4a680358acf6d8f6c644a53194eb3e1e8592cd712e0a373508ba994744b"
   },
   "go": {
     "origin": "platform",
@@ -61,11 +61,11 @@
   },
   "mock-verification": {
     "origin": "platform",
-    "baseHash": "801c037b3b2bc792476b18abdc71f4f8e29c13641da24f3bbfc9d76557e6429a"
+    "baseHash": "e546fb388eb3dc2e97e07c7a9b98f331a16e83b4e448291afd5ad0aab3a74776"
   },
   "openapi-conventions": {
     "origin": "platform",
-    "baseHash": "9cd7da3a163b754c19b83a557bb76bfd9e85fc2f85574a814a09d8a4392b2ba2"
+    "baseHash": "a0b85d6df01414e1aaf506f5c88c4305f0c918aa85835bb2ca15020dbc84c864"
   },
   "organization": {
     "origin": "platform",
@@ -73,7 +73,7 @@
   },
   "oxygen-ui-design-system": {
     "origin": "platform",
-    "baseHash": "dbcb20fea15b3b33fb8b3bcfea970caa537f7b58d21965095e9907da210b71fa"
+    "baseHash": "50e4ec89fbd1886700673a9d9150421714c28ef7847908434f6221455d0531fc"
   },
   "prd-contract": {
     "origin": "platform",
@@ -81,11 +81,11 @@
   },
   "prototype": {
     "origin": "platform",
-    "baseHash": "0de04f19750e35d23cbb44241121c950295e3c16b46a18abf03b14a3c8d2142a"
+    "baseHash": "662a8a1d3b39ef9a8423ba7c9760de0de00b90b0687653e2c239bb78d54d69a4"
   },
   "react-webapp": {
     "origin": "platform",
-    "baseHash": "ebd2ceeb80540934abe9dd0a567e1316f07349a94342f4b6f23bcc21754a900c"
+    "baseHash": "e624e6132b440c136fa5bfc0726a680c35f7c39e6ab59670cba91aa849611516"
   },
   "refine": {
     "origin": "platform",
@@ -101,7 +101,7 @@
   },
   "security-design": {
     "origin": "platform",
-    "baseHash": "48cc3ff2444ef056a15406f6697c4edc60f655b6f33fb42fbb133186825d6a5c"
+    "baseHash": "e6398a09e31681ba29f388dfed13f73fa3b0dd11c965b8ceb4dc5d44c10ec7d5"
   },
   "start": {
     "origin": "platform",
@@ -109,18 +109,14 @@
   },
   "task-planning": {
     "origin": "platform",
-    "baseHash": "fcc1f7a3cd20eccaae3108f19a42edca20cfa7dbb0d154a78b19ea5d772147da"
+    "baseHash": "f43dfca70f4d30c909868ca8d0c3341db6ec8febbfe4aded6387b810dea0b7cc"
   },
   "thunder-authentication": {
     "origin": "platform",
-    "baseHash": "40732b8be7ada7854540a9fadb57a7eb2dbdf8d3392800f236b4df0574e12870"
+    "baseHash": "e26619176be580439805ac30510480aaea7f75a5be2cfae6bf408b3cf44d64d2"
   },
   "validation-task": {
     "origin": "platform",
     "baseHash": "18a5f28b3732a1f62cef94f7b1205489a4d617a225184df4db2b27373ebfc599"
-  },
-  "wireframes": {
-    "origin": "platform",
-    "baseHash": "5ac7c62e9093b8ba79c5bc3988a8a3a18eb923995e322b41b704677da2184d85"
   }
 }
